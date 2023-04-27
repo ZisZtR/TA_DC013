@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script>
+      var i=0;
+      function _clicked(){
+        console.log("test1");
+        var txt='';
+        const tmp = document.getElementsByName('sheet');
+        for(let i=0;i<tmp.length;i++){
+          if(tmp[i].checked) txt=tmp[i].value;
+        }
+        console.log(txt);
+
+        google.script.run.click_select(txt);
+        document.getElementById("ask").style.display = "none";
+        document.getElementById("thanks").style.display = "block";
+        document.getElementById("tyMess").innerHTML += txt;
+      }
+      function changeTip(){
+        const former = document.getElementById('tiptxt').innerHTML;
+        const tips = ['Each process in this script should never take a long time, try to restart when that happens.',
+        'Even if you close this popup, it won\'t interrupt the process.<br>It\'s too late now. HaHaHaHaHaHa.<br>(You can click the \'cancel\' on \'running script\' box)',
+        'This script only lasts 4 hours before it explodes your CPU. //jk',
+        'This script using cache to store the data<br>which has a 4 hours lifetime. Try to restart script<br>before the time run out.',
+        'Makes sure that you call the script on the sheet that gonna<br>received responses.After that the script\'ll work on any response<br>that submitted on this spreadsheet.',
+        'Restart script or refreash made some data to disappear<br>e.g.presented group. Please beware of that.',
+        'If this\'s the first time on this script or you want to<br>restart progresses, make sure you didn\'t have sheet named<br>\'_voted\', \'_frauds\' and \'_result\''];
+        
+        var rng = Math.floor(Math.random() * 7);
+        while('Tip: '+tips[rng]===former) rng = Math.floor(Math.random() * 7);
+        // var rng = 0;
+        document.getElementById('tiptxt').innerHTML = 'Tip: '+tips[rng];
+        i+=1;
+        if(i===10) document.getElementById('snake').innerHTML = '≧◉◡◉≦';
+      }
+    </script>
+    <style>
+      div#thanks{
+        position: reltive;
+      }
+      button {
+        background-color: blue;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+      }
+      button:hover{
+        cursor: pointer;
+      }
+      .close{
+        position: absolute;
+        right: 20px;
+        background-color: red;
+      }
+      @keyframes letsgo {
+        0% {transform: translateX(-210px);}
+        100% {transform: translateX(600px);}
+      }
+      .box{
+        border: solid;
+        width: 400px;
+        height: 23px;
+        padding: 0px 0px 1px;
+        overflow: hidden;
+        position: relative;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      #snake{
+        background-color: #0fff00;
+        width: 250px;
+        text-align: end;
+        padding-right: 10px;
+        margin: 0;
+        color: purple;
+        position: absolute;
+        left: -210px;
+        animation: letsgo 5s linear 0s infinite normal none;
+        border: solid;
+        border-color: #808080;
+        border-radius: 5px;
+      }
+      .tipbox{
+        display: flex;
+        margin: 15px auto 25px;
+        padding: 0px 5px;
+        font-size: 16px;
+        color: rgba(255,0,0,0.7);
+        height: 40px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+        transition: font-size 1s;
+      }
+      .tipbox:hover{
+        font-size: 17px;
+        color: rgba(255,0,0,0.6);
+      }
+      #tiptxt{
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ask">
+      <h3>Whats the sheet that stores students name?</h3>
+      <div>
+      <? for (let i=0;i<data.length; i++){ ?>
+        <input type='radio' id=<?= data[i]?> name='sheet' value=<?= data[i]?> >
+        <label><?=data[i] ?></label>
+        <br><br>
+      <? } ?>
+      </div>
+      <br>
+      <button onclick="_clicked()">Choose</button>
+    </div>
+    <div id="thanks" style="display: none;">
+      <p id="tyMess">You've choose the sheet named : </p>
+      <div class="tipbox" onclick="changeTip()">
+        <span id="tiptxt">Tip: Each process in this script should never take a long time, try to restart when that happens.</span> 
+      </div>
+      <p>Please wait a sec! you'll know it's ready when a notification has appears.</p>
+      <!-- <button class='close' onclick="google.script.host.close()">Close</button> -->
+      <div class="box">
+        <div id="snake">≧◠‿●‿◠≦</div>
+      </div>
+    </div>
+  </body>
+</html>

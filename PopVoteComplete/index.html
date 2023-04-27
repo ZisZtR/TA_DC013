@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>body {font-family: "Sans serif"; font-size: 16px;}th,td {text-align: center }</style>
+    <style>
+        .navbar{
+            height: 130px;
+            position: relative;
+            background-image: linear-gradient(to right, #6ef08c, #28a745);
+        }
+        .logo{
+            width: 260px;
+            font-size: 90px;
+            position: absolute;
+            right: 0px;
+            word-wrap: break-word;
+        }
+        .txtlogo{
+            line-height: 1.2;
+            color: #0fffff40;
+        }
+        .txtbig{
+            font-size: 70px;
+            margin-right: 0;
+        }
+        /* ---------------------new create----------------- */
+        @keyframes point{
+            0% {transform: translateY(0px);}
+            100% {transform: translateY(8px);}
+        }
+        @keyframes SpotLightL{
+            0% {visibility: visible;
+                transform: translateX(-35vw);}
+            50% {transform: translateX(20vw);}
+            75% {transform: translateX(-5vw);}
+            100%{transform: translateX(0vw);
+                visibility: visible;}
+        }
+        @keyframes SpotLightR{
+            0% {visibility: visible;
+                color: transparent;
+                transform: translateX(35vw);}
+            50% {transform: translateX(-20vw);
+                color: transparent;}
+            75% {transform: translateX(5vw);
+                color: transparent;}
+            95%{transform: translateX(0vw);
+                color: transparent;}
+            100%{transform: translateX(0vw);
+                visibility: visible;
+            color: gray;}
+        }
+        @keyframes growPill {
+            0%{ visibility: visible;
+                transform: scaleY(0);
+                transform-origin: 0% 100%;}
+            100%{visibility: visible;
+                transform: scaleY(1);
+                transform-origin: 0% 100%;}
+        }
+        @keyframes popHead {
+            0%{
+                visibility: visible;
+                transform: scale(0,0);
+            }
+            100%{
+                transform: scale(1, 1);
+                visibility: visible;
+            }
+        }
+        @keyframes annouceth {
+            0%{ 
+                visibility: visible;
+                transform: translateY(-100px);
+            }
+            5%{ 
+                transform: translateY(0);
+                transform: rotateY(100deg);
+            }
+            20%{transform: rotateY(10000deg);}
+            50%{transform: rotateY(0deg);}
+            80%{transform: rotateY(1000deg);}
+            90%{transform: rotateY(100deg);} 
+            92%{transform: rotateY(50deg);}
+            94%{transform: rotateY(20deg);}
+            96%{transform: rotateY(10deg);}
+            98%{transform: rotateY(5deg);}
+            99%{transform: rotateY(0deg);}
+            100%{visibility: visible;}   
+        }
+
+        @keyframes showWin {
+            0% 100%{transform: rotateZ(0deg);}
+            30%{transform: rotateZ(5deg);}
+            60%{transform: rotateZ(-5deg);}
+        }
+
+        .annMain{
+            width: 70vw;
+            height: 570px;
+            border: solid #00000020 1px;
+            border-radius: 20px;
+            box-shadow: 2px 2px #00000030;
+            background-image: linear-gradient(#FDFFAE20 , #FDFFAE);
+            padding: 2vw;
+        }
+        .triangle-down {
+	        width: 0;
+	        height: 0;
+	        border-left: 1.8vw solid transparent;
+	        border-right: 1.8vw solid transparent;
+	        border-top: 3vh solid #f00;
+        }
+        .arrow-body {
+            background-color: red;
+            width: 1.5vw;
+            height: 4vh;
+            border-right: solid 2px #00000050;
+            border-top: solid 2px #00000050;
+        }
+        .thearrow {
+            cursor: pointer;
+            animation: point 1s ease-in-out 0s infinite alternate none;
+        }
+        
+        .circle{
+            visibility: hidden;
+            position: absolute;
+            left: 40vw;
+            top: 90vh;
+            height: 300px;
+            width: 300px;
+            background-color: #ffffff70;
+            border-radius: 50%;
+            text-align: center;
+            padding: 100px;
+        }
+        .set{
+            visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+        }
+        .arrBox{
+            width: 500px;
+            height: 400px;
+            margin: 50px 0px 0px;
+            display: grid;
+            grid-template-areas: 'arr3 arr1 arr2'
+            'num3 num1 num2'
+            'num3 num1 num2'
+            'num3 num1 num2'
+            'num3 str1 num2'
+            'num3 str1 str2'
+            'str3 str1 str2';
+        }
+
+        #Ar3{grid-area: arr3;}
+        #Ar2{ grid-area: arr2;}
+        #Ar1{ grid-area: arr1;}
+        #th3{grid-area: num3;}
+        #th1{grid-area: num1;}
+        #th2{grid-area: num2;}
+        #Bpi3{grid-area: str3;}
+        #Bpi1{grid-area: str1;}
+        #Bpi2{grid-area: str2;}
+
+        .headPillar{
+            background-color: #D9D9D9;
+            border: solid gray .3px;
+            width: 80px;
+            height: 10px;
+        }
+        .corePillar{
+            visibility: hidden;
+            background-color: #F1EEEE;
+            width: 10px;
+            height: inherit;
+            border: solid rgba(128, 128, 128, 0.5) 1px;
+        }
+        .pillar{
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+        }
+        .animePill{
+            animation: growPill 3s ease-out 1s 1 normal forwards;
+        }
+        #pi1{
+            height: 150px;
+        }
+        #pi2{
+            height: 100px;
+        }
+        #pi3{
+            height: 50px;
+        }
+        .cantsee {
+            visibility: hidden;
+            animation: popHead 0.5s linear 4s 1 normal forwards;
+        }
+        .numberth{
+            color: coral;
+            font-size: 50px;
+            text-shadow: -2px 0 rgb(0, 0, 0), 0 2px rgb(0, 0, 0), 2px 0 rgb(0, 0, 0), 0 -2px rgb(0, 0, 0);  
+        }
+        .testPillar{
+            content: '';
+            visibility: hidden;
+            width: 70px;
+            height: 100px;
+            background-image: repeating-linear-gradient(to right, #F1EEEE, #F1EEEE 10px, white 10px, white 20px);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: 0 0;
+            border: solid rgba(128, 128, 128, 0.5) 1px;
+        }
+        .table{
+          max-width: 80vw;
+        }
+        #tableID2{
+          font-size: 20px;
+        }
+        #tableID2 > tr:nth-child(6){
+          background-color: brown;
+          color: white;
+        }
+        #tableID1 > tr:nth-child(2){
+          font-size: 30px;
+          color: red;
+        } 
+        #tableID1 > tr:nth-child(3){
+          font-size: 25px;
+          color: blue;
+        } 
+        #tableID1 > tr:nth-child(4){
+          font-size: 20px;
+          color: blue;
+        }
+        #th1 > .numberth{
+          animation: showWin 1s linear 1s infinite normal none;
+        }
+        /* ---------------------new create----------------- */
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <title>DigitalCitizen - PopularVote</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark mb-3 overflow-hidden">
+        <div>
+            <span class="navbar-brand mb-0 txtbig">P</span>
+            <span class="navbar-brand mb-0 h1">opular Vote<br>lease be patient for the result!</span>
+        </div>
+        <div class="text-white logo text-break">
+            <p class="txtlogo">DigitalCitizen</p>
+        </div>
+    </nav>
+    <div class="container-fluid" align="center">
+        
+        <div id="fraudsdiv">
+            <table class="table table-warning" id="tableID2" border="1" cellpadding="5px"></table>
+        </div>
+        <br><br>
+        <div class="circle" id="c1">Press Enter</div>
+        <div class="circle" id="c2"></div>
+        <div class="annMain">
+            <h1 style="font-family: 'Merriweather, serif', cursive; color: rgb(187, 58, 58);">Announce the Winner!!!</h1>
+            <h6 id="wait">The result isn't out yet. Come back next time!</h6>
+            <div class="arrBox">
+                <div class="thearrow" id="Ar3">
+                    <div class="arrow-body"></div>
+                    <div class="triangle-down"></div>
+                </div>
+                <div class="set" id="th3">
+                    <h1 class="numberth">23</h1>
+                </div>
+                <div class="pillar" id="Bpi3">
+                    <div class="headPillar cantsee"></div>
+                    <div class="testPillar animePill" id="pi3"></div>
+                    <div class="headPillar"></div>
+                </div>
+
+                <div class="thearrow" id="Ar1">
+                    <div class="arrow-body"></div>
+                    <div class="triangle-down"></div>
+                </div>
+                <div class="set" id="th1">
+                    <h1 class="numberth">01</h1>
+                </div>
+                <div class="pillar" id="Bpi1">
+                    <div class="headPillar cantsee"></div>
+                    <div class="testPillar animePill" id="pi1"></div>
+                    <div class="headPillar"></div>
+                </div>
+
+                <div class="thearrow" id="Ar2">
+                    <div class="arrow-body"></div>
+                    <div class="triangle-down"></div>
+                </div>
+                <div class="set" id="th2">
+                    <h1 class="numberth">12</h1>
+                </div>
+                <div class="pillar" id="Bpi2">
+                    <div class="headPillar cantsee"></div>
+                    <div class="testPillar animePill" id="pi2"></div>
+                    <div class="headPillar"></div>
+                </div>
+            </div>
+        </div>
+        <br><br><br><br>
+        <div id="resultdiv">
+            <table class="table" id="tableID1" border="1" cellpadding="5px"></table>
+        </div>
+    </div>
+
+    <script>
+        var result;
+        var frauds;
+        var tableHeaders = []; 
+        window.onload = () => { 
+            $('.thearrow').hide();
+            $('#wait').show();
+            google.script.run.withSuccessHandler(createTable).getSheetData();  //get [_result, _frauds]
+        }
+
+        function createTable(data) {
+            [result, frauds] = data;
+            if(result===null||frauds===null) return 0;
+            console.log(result);
+            console.log(frauds);
+            $('.thearrow').show();
+            $('#wait').hide(); 
+            $('#resultdiv').show();
+            $('#fraudsdiv').show();
+
+            for(let i=1;i<4;i++){
+              document.getElementById('th'+i).getElementsByClassName('numberth')[0].innerHTML = result[i][0];
+            }
+
+            var tag_frauds = document.getElementById('tableID2');
+            $(tag_frauds).append(`<tr class="table-info" id="fraudsHeaders"></tr>`);
+            frauds[0].forEach(h => {
+              $('#fraudsHeaders').append(`<th>${h}</th>`);
+            })
+            frauds[1][0] = 'Valid vote';
+            for(let i=1;i<frauds.length;i++){
+              $(tag_frauds).append(`<tr id="fraudsTR${i}"></tr>`);
+              frauds[i].forEach(d => {
+                $(`#fraudsTR${i}`).append(`<td>${d}</td>`);
+              })
+            }
+
+            const tmp = document.getElementsByClassName("thearrow");
+            for(let i=0;i<tmp.length;i++){
+                tmp[i].addEventListener("click", (e)=>{
+                    var TA = e.currentTarget.id;
+                    var num = TA[TA.length-1];
+                    document.getElementById(TA).style.display = 'none';
+                    if(TA==='Ar1'){
+                        document.body.style.backgroundColor = "#00000070";
+                        document.getElementById('c2').style.animation = 'SpotLightL 6s ease-in-out 1s 1 normal both';
+                        document.getElementById('c1').style.animation = 'SpotLightR 6s ease-in-out 1s 1 normal both';
+                        document.addEventListener('keyup', (e)=>{
+                            if(e.keyCode === 13){
+                                event.preventDefault();
+                                console.log(e.keyCode);
+                                document.body.style.backgroundColor = "#fff";
+                                console.log(document.getElementById("c1"));
+                                document.getElementById("c1").style.visibility = 'hidden';
+                                document.getElementById("c1").style.removeProperty('animation');
+                                document.getElementById("c2").style.visibility = 'hidden';
+                                document.getElementById("c2").style.removeProperty('animation');
+                                document.getElementById('th1').style.animation = "annouceth 2s ease-out 0s 1 normal forwards";
+
+                                var tag_result = document.getElementById('tableID1');
+                                $(tag_result).append(`<tr class="table-info" id="resultHeaders"></tr>`);
+                                result[0].forEach(h => {
+                                  $('#resultHeaders').append(`<th>${h}</th>`);
+                                })
+                                for(let i=1;i<result.length;i++){
+                                  $(tag_result).append(`<tr id="resultTR${i}"></tr>`);
+                                  result[i].forEach(d => {
+                                    $(`#resultTR${i}`).append(`<td>${d}</td>`);
+                                  })
+                                }
+                            }
+                        })
+                    } else {
+                        let tmp2 = document.getElementById('th'+num);
+                        // tmp2.style.visibility = 'visible';
+                        tmp2.style.animation = "annouceth 2s ease-out 1s 1 normal forwards";
+                    }
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>
