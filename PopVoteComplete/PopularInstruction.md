@@ -11,16 +11,27 @@
 
 ## สิ่งที่ต้องมี
 1. google sheet ที่เก็บรายชื่อนักเรียนที่แบ่งตามกลุ่ม ซึ่งจะมี format แบบนี้
-  ![stdname](/Asset/stdname.png)
+
+  ![stdname](./Asset/stdname.png)
+  
   Column ที่จำเป็นต้องใช้(ย้ายที่ไม่ได้) A:ลำดับกลุ่ม B:รหัสนิสิต F:เมลku 
   **ไฟล์นี้ต้อง sort ตามลำดับกลุ่มมาแล้ว และไม่ต้องมี header**
 2. google sheet ที่รับผลโหวตจาก google form
-  ![response](/Asset/response.png)
+
+  ![response](./Asset/response.png)
+  
   Column ที่จำเป็นต้องใช้(ย้ายที่ไม่ได้) B:email C:รหัสนิสิต D:อยู่กลุ่มที่ E:ให้คะแนนกลุ่มที่
   แต่ส่วนมาก อ.สุนิสาจะเป็นคนสร้าง form อยู่แล้ว ดังนั้นจึงไปขอจาก อ. ได้
   
 ## วิธีการฝังโค้ด
 1. เริ่มเข้ามาที่ sheet ที่รับผลโหวต เข้ามาที่เมนู Extensions > Apps script
-![setup](/Asset/setup.png)
+
+![setup](./Asset/setup.png)
+
 2. เมื่อคลิกที่ Apps script จะได้หน้าต่างใหม่ในลักษณะนี้
-![setup2](/Asset/setup2.png)
+
+![setup2](./Asset/setup2.png)
+
+3. ทำการสร้างไฟล์ใหม่ที่เครื่องหมาย "+" คัดลอกโค้ดใน Github มาลง และ**ตั้งชื่อไฟล์ให้ตรงกัน** ทำแบบนี้ทุกไฟล์ยกเว้น PopularInstruction.md
+
+![setup3](./Asset/setup3.png)
