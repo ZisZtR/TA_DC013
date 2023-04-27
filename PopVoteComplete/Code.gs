@@ -1,7 +1,4 @@
 // gs doesn't has global var. we use Cache instead.
-// https://docs.google.com/spreadsheets/d/1E9epOnYuG2R-W26sddGisIR2qRxqChchlWep5AMs36c/edit#gid=1026512174
-// Column A: group number, B: stdID, F: email(@ku)
-
 
 // *-----------------------------------Utility function----------------------------------------------*
 
