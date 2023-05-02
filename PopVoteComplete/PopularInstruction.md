@@ -55,7 +55,7 @@
 
 ![setup4](./Asset/setup4.png)
 
-5. กลับไปหน้า Apps Script แล้วคลิกไปที่ปุ่ม Deploy
+5. กลับไปหน้า Apps Script แล้วคลิกไปที่ปุ่ม New deployment
 
 ![deploy](./Asset/deploy.png)
 
