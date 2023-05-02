@@ -51,9 +51,13 @@
 
 ![setup3.5](./Asset/setup3(2).png)
 
-4. เมื่อ save ทุกอย่างแล้ว ลองกลับไปหน้า google sheet แล้ว refresh 1 ครั้ง หากสำเร็จ จะมีเมนูใหม่เพิ่มขึ้น ชื่อ PopularVote เป็นอันสิ้นสุดการติดตั้ง
+4. เมื่อ save ทุกอย่างแล้ว ลองกลับไปหน้า google sheet แล้ว refresh 1 ครั้ง หากสำเร็จ จะมีเมนูใหม่เพิ่มขึ้น ชื่อ PopularVote
 
 ![setup4](./Asset/setup4.png)
+
+5. กลับไปหน้า Apps Script แล้วคลิกไปที่ปุ่ม Deploy
+
+![deploy](./Asset/deploy.png)
 
 ## function การทำงาน
   1. **Start Script** ทำการ set up script เพื่อให้พร้อมเรื่มรับผลโหวต
