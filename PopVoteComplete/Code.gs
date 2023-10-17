@@ -1,4 +1,6 @@
 // gs doesn't has global var. we use Cache instead.
+// Column A: group number, B: stdID, F: email(@ku)
+
 
 // *-----------------------------------Utility function----------------------------------------------*
 
@@ -62,6 +64,7 @@ function select_sheet_ui(arr){
 
 function click_select(txt){
   var cache = CacheService.getScriptCache();
+  console.log(txt);
   if(txt!==''){
     cache.put("what_sheet", txt, 14400);
   }
@@ -192,10 +195,10 @@ function update_result(e){
   const last_col = sheet.getLastColumn();
   const _cell = sheet.getRange(e.range.getRow(), last_col); //cell that stores the error info
 
-  const em = response[1];
-  const id = response[2].toString();
-  const gn = response[3];
-  const to_gn = response[4];
+  const em = response[12];
+  const id = response[1].toString();
+  const gn = response[2];
+  const to_gn = response[3];
 
   // // for debugging
   // try{
@@ -262,7 +265,7 @@ function result(){
   sheet.activate();
 
   // set Values& Calculated function
-  pTable.addPivotValue(5, SpreadsheetApp.PivotTableSummarizeFunction.COUNTA).setDisplayName('จำนวนโหวต');
+  pTable.addPivotValue(4, SpreadsheetApp.PivotTableSummarizeFunction.COUNTA).setDisplayName('จำนวนโหวต');
   var cFunction = '=AVERAGE(';
   header.forEach((v, i)=>{
     pTable.addPivotValue(num_header[i]+1, SpreadsheetApp.PivotTableSummarizeFunction.AVERAGE).setDisplayName(v);
@@ -277,7 +280,7 @@ function result(){
   pTable.addFilter(sheet.getLastColumn(), succes_f);
 
   // set Row & sort descending
-  pTable.addRowGroup(5).showTotals(false).setDisplayName('กลุ่มที่').sortBy(total, []).sortDescending();
+  pTable.addRowGroup(4).showTotals(false).setDisplayName('กลุ่มที่').sortBy(total, []).sortDescending();
 
   // call to create pivot for showing frauds vote
   var fraud_sheet;
